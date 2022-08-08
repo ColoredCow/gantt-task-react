@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import { Task } from "../../types/public-types";
 import { BarTask } from "../../types/bar-task";
 import styles from "./tooltip.module.css";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 export type TooltipProps = {
   task: BarTask;
@@ -17,7 +19,7 @@ export type TooltipProps = {
   rowHeight: number;
   fontSize: string;
   fontFamily: string;
-  TooltipContent: React.FC<{
+  Tooltip: React.FC<{
     task: Task;
     fontSize: string;
     fontFamily: string;
@@ -36,7 +38,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   fontFamily,
   headerHeight,
   taskListWidth,
-  TooltipContent,
+  Tooltip,
 }) => {
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const [relatedY, setRelatedY] = useState(0);
@@ -107,12 +109,16 @@ export const Tooltip: React.FC<TooltipProps> = ({
       }
       style={{ left: relatedX, top: relatedY }}
     >
-      <TooltipContent task={task} fontSize={fontSize} fontFamily={fontFamily} />
+        <OverlayTrigger
+          overlay={
+            <Tooltip task={task} fontSize={fontSize} fontFamily={fontFamily} />
+          }
+        />
     </div>
   );
 };
 
-export const StandardTooltipContent: React.FC<{
+export const StandardTooltip: React.FC<{
   task: Task;
   fontSize: string;
   fontFamily: string;
@@ -125,11 +131,7 @@ export const StandardTooltipContent: React.FC<{
     <div className={styles.tooltipDefaultContainer} style={style}>
       <b style={{ fontSize: fontSize + 6 }}>{`${
         task.name
-      }: ${task.start.getDate()}-${
-        task.start.getMonth() + 1
-      }-${task.start.getFullYear()} - ${task.end.getDate()}-${
-        task.end.getMonth() + 1
-      }-${task.end.getFullYear()}`}</b>
+      }`}</b>
       {task.end.getTime() - task.start.getTime() !== 0 && (
         <p className={styles.tooltipDefaultContainerParagraph}>{`Duration: ${~~(
           (task.end.getTime() - task.start.getTime()) /
