@@ -106,7 +106,16 @@ export const Tooltip: React.FC<TooltipProps> = ({
           : styles.tooltipDetailsContainerHidden
       }
     >
-
+      <div
+      ref={tooltipRef}
+      className={
+        relatedX
+          ? styles.tooltipDetailsContainer
+          : styles.tooltipDetailsContainerHidden
+      }
+      style={{ left: relatedX, top: relatedY }}
+      >
+      </div>
       <TooltipContent task={task} fontSize={fontSize} fontFamily={fontFamily} />
     </ReactTooltip>
   );
