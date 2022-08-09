@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { Task } from "../../types/public-types";
 import { BarTask } from "../../types/bar-task";
 import styles from "./tooltip.module.css";
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
 
 export type TooltipProps = {
   task: BarTask;
@@ -19,7 +17,7 @@ export type TooltipProps = {
   rowHeight: number;
   fontSize: string;
   fontFamily: string;
-  Tooltip: React.FC<{
+  TooltipContent: React.FC<{
     task: Task;
     fontSize: string;
     fontFamily: string;
@@ -38,7 +36,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   fontFamily,
   headerHeight,
   taskListWidth,
-  Tooltip,
+  TooltipContent,
 }) => {
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const [relatedY, setRelatedY] = useState(0);
@@ -109,16 +107,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
       }
       style={{ left: relatedX, top: relatedY }}
     >
-        <OverlayTrigger
-          overlay={
-            <Tooltip task={task} fontSize={fontSize} fontFamily={fontFamily} />
-          }
-        />
+        <TooltipContent task={task} fontSize={fontSize} fontFamily={fontFamily} />
     </div>
   );
 };
 
-export const StandardTooltip: React.FC<{
+export const StandardTooltipContent: React.FC<{
   task: Task;
   fontSize: string;
   fontFamily: string;
@@ -131,7 +125,11 @@ export const StandardTooltip: React.FC<{
     <div className={styles.tooltipDefaultContainer} style={style}>
       <b style={{ fontSize: fontSize + 6 }}>{`${
         task.name
-      }`}</b>
+      }: ${task.start.getDate()}-${
+        task.start.getMonth() + 1
+      }-${task.start.getFullYear()} - ${task.end.getDate()}-${
+        task.end.getMonth() + 1
+      }-${task.end.getFullYear()}`}</b>
       {task.end.getTime() - task.start.getTime() !== 0 && (
         <p className={styles.tooltipDefaultContainerParagraph}>{`Duration: ${~~(
           (task.end.getTime() - task.start.getTime()) /
