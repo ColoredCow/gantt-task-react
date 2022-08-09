@@ -62,5 +62,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap": "^5.2.0",
+    "react-bootstrap": "^2.5.0"
+  }
 }
