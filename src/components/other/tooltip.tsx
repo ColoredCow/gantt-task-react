@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { Task } from "../../types/public-types";
 import { BarTask } from "../../types/bar-task";
 import styles from "./tooltip.module.css";
-import ReactTooltip from "react-tooltip";
 
 export type TooltipProps = {
   task: BarTask;
@@ -99,14 +98,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   ]);
 
   return (
-    <ReactTooltip
-      className={
-        relatedX
-          ? styles.tooltipDetailsContainer
-          : styles.tooltipDetailsContainerHidden
-      }
-    >
-      <div
+    <div
       ref={tooltipRef}
       className={
         relatedX
@@ -114,10 +106,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
           : styles.tooltipDetailsContainerHidden
       }
       style={{ left: relatedX, top: relatedY }}
-      >
-      </div>
+    >
+
       <TooltipContent task={task} fontSize={fontSize} fontFamily={fontFamily} />
-    </ReactTooltip>
+    </div>
   );
 };
 
