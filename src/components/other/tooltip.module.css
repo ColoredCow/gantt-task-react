@@ -42,3 +42,8 @@
   display: flex;
   pointer-events: none;
 }
+
+.delay{
+  color: red;
+  font-weight: bold; 
+}
