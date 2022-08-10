@@ -127,14 +127,15 @@ export const StandardTooltipContent: React.FC<{
         task.name
       }`}</b>
       {task.end.getTime() - task.start.getTime() !== 0 && (
-        <p className={styles.tooltipDefaultContainerParagraph}>{`Duration: ${~~(
-          (task.end.getTime() - task.start.getTime()) /
-          (1000 * 60 * 60 * 24)
-        )} day(s)`}</p>
+        <p className={styles.tooltipDefaultContainerParagraph}>{`Revised/Actual Start Date: ${task.start.getDate()}-${
+          task.start.getMonth() + 1
+        }-${task.start.getFullYear()}`}</p>
       )}
 
       <p className={styles.tooltipDefaultContainerParagraph}>
-        {!!task.progress && `Progress: ${task.progress} %`}
+        {`Revised/Actual Finish Date: ${task.end.getDate()}-${
+        task.end.getMonth() + 1
+      }-${task.end.getFullYear()}`}
       </p>
     </div>
   );

@@ -16,10 +16,10 @@
   content: "";
   position: absolute;
   left: 0;
-  top: 50px;
-  margin-left: -12px;
+  top: 30px;
+  margin-left: -26px;
   transform: rotate(90deg);
-  border-width: 7px;
+  border-width: 13px;
   border-style: solid;
   border-color: black transparent transparent transparent;
 }
