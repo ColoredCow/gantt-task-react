@@ -1,13 +1,27 @@
 .tooltipDefaultContainer {
-  background: #fff;
+  background: black;
+  color: white;
   padding: 12px;
+  border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .tooltipDefaultContainerParagraph {
   font-size: 12px;
   margin-bottom: 6px;
-  color: #666;
+  color: white;
+}
+
+.tooltipDefaultContainerParagraph::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50px;
+  margin-left: -12px;
+  transform: rotate(90deg);
+  border-width: 7px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
 }
 
 .tooltipDetailsContainer {
