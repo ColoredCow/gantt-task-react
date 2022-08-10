@@ -137,10 +137,12 @@ export const StandardTooltipContent: React.FC<{
       }-${task.end.getFullYear()}`}
       </p>
 
+    {new Date().getTime() > task.end.getTime() && (
     <p className={styles.delay}>{`Delay: ${~~(
         (new Date().getTime() - task.end.getTime()) /
           (1000 * 60 * 60 * 24)
       )} day(s)`}</p>
+    )}
     </div>
   );
 };
