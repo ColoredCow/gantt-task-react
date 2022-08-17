@@ -179,6 +179,9 @@ export const getLocaleMonth = (date: Date, locale: string) => {
     bottomValue[0],
     bottomValue[0].toLocaleUpperCase()
   );
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let monthNumber : number = monthNames.indexOf(bottomValue) + 1;
+  bottomValue = monthNumber < 10 ? '0' + monthNumber.toString() : monthNumber.toString();
   return bottomValue;
 };
 
