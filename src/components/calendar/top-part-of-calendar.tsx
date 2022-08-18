@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./calendar.module.css";
-import {Gantt} from "../gantt/gantt"
 
 type TopPartOfCalendarProps = {
   value: string;
