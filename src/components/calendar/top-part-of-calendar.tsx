@@ -34,6 +34,8 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
         x={xText}
         className={styles.calendarTopText}
       >
+        {value}
+      </text>
       <line
         x1={x1Line}
         y1={y2Line}
@@ -42,8 +44,6 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
         className={styles.calendarTopTick}
         key={value + "line"}
       />
-        {value}
-      </text>
     </g>
   );
 };
