@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./calendar.module.css";
+import {Gantt} from "../gantt/gantt"
 
 type TopPartOfCalendarProps = {
   value: string;
@@ -36,8 +37,8 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
       >
       <line
         x1={x1Line}
-        y1={y1Line}
-        x2={x1Line}
+        y1={y2Line}
+        x2={x1Line + 12*30}
         y2={y2Line}
         className={styles.calendarTopTick}
         key={value + "line"}
