@@ -338,7 +338,14 @@ export const Calendar: React.FC<CalendarProps> = ({
         x={0}
         y={0}
         width={columnWidth * dateSetup.dates.length}
-        height={headerHeight}
+        height={45}
+        className={styles.calendarHeader}
+      />
+      <rect
+        x={0}
+        y={0}
+        width={columnWidth * dateSetup.dates.length}
+        height={45}
         className={styles.calendarHeader}
       />
       {bottomValues} {topValues}
