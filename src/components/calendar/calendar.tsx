@@ -1,5 +1,5 @@
 import React, { ReactChild } from "react";
-import { ViewMode } from "../../types/public-types";
+import { ViewMode, Task  } from "../../types/public-types";
 import { TopPartOfCalendar } from "./top-part-of-calendar";
 import {
   getCachedDateTimeFormat,
@@ -23,6 +23,9 @@ export type CalendarProps = {
   fontSize: string;
   todayColor: string;
   dates: Date[];
+  svgWidth: number;
+  rowHeight: number;
+  tasks: Task[];
 };
 
 export const Calendar: React.FC<CalendarProps> = ({
@@ -35,7 +38,10 @@ export const Calendar: React.FC<CalendarProps> = ({
   fontFamily,
   fontSize,
   todayColor,
-  dates
+  dates,
+  rowHeight,
+  svgWidth,
+  tasks
 }) => {
   const getCalendarValuesForYear = () => {
     const topValues: ReactChild[] = [];
