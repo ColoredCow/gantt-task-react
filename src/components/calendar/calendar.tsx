@@ -11,7 +11,6 @@ import {
 import { DateSetup } from "../../types/date-setup";
 import styles from "./calendar.module.css";
 import { addToDate } from "../../helpers/date-helper";
-import { Task } from "../../types/public-types";
 
 export type CalendarProps = {
   dateSetup: DateSetup;
@@ -22,11 +21,8 @@ export type CalendarProps = {
   columnWidth: number;
   fontFamily: string;
   fontSize: string;
-  dates: Date[];
   todayColor: string;
-  svgWidth: number;
-  rowHeight: number;
-  tasks: Task[];
+  dates: Date[];
 };
 
 export const Calendar: React.FC<CalendarProps> = ({
@@ -38,11 +34,8 @@ export const Calendar: React.FC<CalendarProps> = ({
   columnWidth,
   fontFamily,
   fontSize,
-  dates,
   todayColor,
-  svgWidth,
-  rowHeight,
-  tasks
+  dates
 }) => {
   const getCalendarValuesForYear = () => {
     const topValues: ReactChild[] = [];
