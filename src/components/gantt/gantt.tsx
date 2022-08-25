@@ -405,6 +405,11 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     fontFamily,
     fontSize,
     rtl,
+    todayColor,
+    svgWidth,
+    rowHeight,
+    tasks,
+    dates: dateSetup.dates
   };
   const barProps: TaskGanttContentProps = {
     tasks: barTasks,
