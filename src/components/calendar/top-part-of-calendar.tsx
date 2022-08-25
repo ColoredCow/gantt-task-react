@@ -1,5 +1,7 @@
-import React from "react";
+import React, { ReactChild } from "react";
 import styles from "./calendar.module.css";
+import { addToDate } from "../../helpers/date-helper";
+import { Task  } from "../../types/public-types";
 
 type TopPartOfCalendarProps = {
   value: string;
@@ -8,6 +10,13 @@ type TopPartOfCalendarProps = {
   y2Line: number;
   xText: number;
   yText: number;
+  todayColor: string;
+  dates: Date[];
+  svgWidth: number;
+  rowHeight: number;
+  tasks: Task[];
+  columnWidth: number;
+  rtl: boolean;
 };
 
 export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
@@ -17,25 +26,130 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
   y2Line,
   xText,
   yText,
+  todayColor,
+  dates,
+  svgWidth,
+  rowHeight,
+  rtl,
+  columnWidth,
+  tasks
 }) => {
-  return (
-    <g className="calendarTop">
-      <line
-        x1={x1Line}
-        y1={y1Line}
-        x2={x1Line}
-        y2={y2Line}
-        className={styles.calendarTopTick}
-        key={value + "line"}
+  let y = 0;
+  const gridRows: ReactChild[] = [];
+  const rowLines: ReactChild[] = [
+    <line
+      key="RowLineFirst"
+      x="0"
+      y1={0}
+      x2={svgWidth}
+      y2={0}
+      className={styles.gridRowLine}
+    />,
+  ];
+  for (const task of tasks) {
+    gridRows.push(
+      <rect
+        key={"Row" + task.id}
+        x="0"
+        y={y}
+        width={svgWidth}
+        height={rowHeight}
+        className={styles.gridRow}
       />
-      <text
-        key={value + "text"}
-        y={yText}
-        x={xText}
-        className={styles.calendarTopText}
-      >
-        {value}
-      </text>
-    </g>
+    );
+    rowLines.push(
+      <line
+        key={"RowLine" + task.id}
+        x="0"
+        y1={y + rowHeight}
+        x2={svgWidth}
+        y2={y + rowHeight}
+        className={styles.gridRowLine}
+      />
+    );
+    y += rowHeight;
+  }
+
+  const now = new Date();
+  let tickX = 0;
+  const ticks: ReactChild[] = [];
+  let today: ReactChild = <rect />;
+  for (let i = 0; i < dates.length; i++) {
+    const date = dates[i]; 
+    ticks.push(
+      <line
+        key={date.getTime()}
+        x1={tickX}
+        y1={0}
+        x2={tickX}
+        y2={y}
+        className={styles.gridTick}
+      />
+    );
+    if (
+      (i + 1 !== dates.length &&
+        date.getTime() < now.getTime() &&
+        dates[i + 1].getTime() >= now.getTime()) ||
+      // if current date is last
+      (i !== 0 &&
+        i + 1 === dates.length &&
+        date.getTime() < now.getTime() &&
+        addToDate(
+          date,
+          date.getTime() - dates[i - 1].getTime(),
+          "millisecond"
+        ).getTime() >= now.getTime())
+    ) {
+      today = (
+        <rect
+          x={tickX}
+          y={0}
+          width={columnWidth}
+          height={y}
+          fill={todayColor}
+        />
+      );
+    }
+    // rtl for today
+    if (
+      rtl &&
+      i + 1 !== dates.length &&
+      date.getTime() >= now.getTime() &&
+      dates[i + 1].getTime() < now.getTime()
+    ) {
+      today = (
+        <rect
+          x={tickX + columnWidth}
+          y={0}
+          width={columnWidth}
+          height={y}
+          fill={todayColor}
+        />
+      );
+    }
+    tickX += columnWidth;
+  }
+  return (
+    <>
+      <g className="ticks">{ticks}</g>
+      <g className="calendarTop">
+        <line
+          x1={x1Line}
+          y1={y1Line}
+          x2={x1Line}
+          y2={y2Line}
+          className={styles.calendarTopTick}
+          key={value + "line"}
+        />
+        <text
+          key={value + "text"}
+          y={yText}
+          x={xText}
+          className={styles.calendarTopText}
+        >
+          {value}
+        </text>
+      </g>
+    </>
   );
 };
