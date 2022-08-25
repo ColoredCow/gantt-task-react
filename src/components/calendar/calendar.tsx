@@ -421,22 +421,28 @@ export const Calendar: React.FC<CalendarProps> = ({
   let bottomValues: ReactChild[] = [];
   switch (dateSetup.viewMode) {
     case ViewMode.Year:
+      <g className="ticks">{ticks}</g>
       [topValues, bottomValues] = getCalendarValuesForYear();
       break;
-    case ViewMode.Month:
+      case ViewMode.Month:
+        <g className="ticks">{ticks}</g>
         [topValues, bottomValues] = getCalendarValuesForMonth();
         break;
       case ViewMode.Week:
+      <g className="ticks">{ticks}</g>
       [topValues, bottomValues] = getCalendarValuesForWeek();
       break;
     case ViewMode.Day:
+      <g className="ticks">{ticks}</g>
       [topValues, bottomValues] = getCalendarValuesForDay();
       break;
     case ViewMode.QuarterDay:
     case ViewMode.HalfDay:
+      <g className="ticks">{ticks}</g>
       [topValues, bottomValues] = getCalendarValuesForPartOfDay();
       break;
     case ViewMode.Hour:
+      <g className="ticks">{ticks}</g>
       [topValues, bottomValues] = getCalendarValuesForHour();
   }
   return (
@@ -456,7 +462,6 @@ export const Calendar: React.FC<CalendarProps> = ({
         className={styles.calendarHeader}
       />
       {bottomValues} {topValues}
-      <g className="ticks">{ticks}</g>
       <g className="today">{today}</g>
     </g>
   );
