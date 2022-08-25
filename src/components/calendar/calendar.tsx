@@ -37,7 +37,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   columnWidth,
   fontFamily,
   fontSize,
-  todayColor,
+  // todayColor,
   dates,
   rowHeight,
   svgWidth,
@@ -84,9 +84,9 @@ export const Calendar: React.FC<CalendarProps> = ({
             rowHeight={rowHeight}
             svgWidth={svgWidth}
             dates={dates}
-            todayColor={todayColor}
+            // todayColor={todayColor}  
             columnWidth={columnWidth}
-            rtl={rtl}
+            // rtl={rtl}  
           />
         );
       }
@@ -171,9 +171,9 @@ export const Calendar: React.FC<CalendarProps> = ({
             rowHeight={rowHeight}
             svgWidth={svgWidth}
             dates={dates}
-            todayColor={todayColor}
+            // todayColor={todayColor} 
             columnWidth={columnWidth}
-            rtl={rtl}
+            // rtl={rtl} 
           />
         );
       }
@@ -224,9 +224,9 @@ export const Calendar: React.FC<CalendarProps> = ({
               rowHeight={rowHeight}
               svgWidth={svgWidth}
               dates={dates}
-              todayColor={todayColor}
+              // todayColor={todayColor}
               columnWidth={columnWidth}
-              rtl={rtl}
+              // rtl={rtl}
             />
           );
         }
@@ -282,9 +282,9 @@ export const Calendar: React.FC<CalendarProps> = ({
             rowHeight={rowHeight}
             svgWidth={svgWidth}
             dates={dates}
-            todayColor={todayColor}
+            // todayColor={todayColor}
             columnWidth={columnWidth}
-            rtl={rtl}
+            // rtl={rtl}
           />
         );
       }
@@ -334,9 +334,9 @@ export const Calendar: React.FC<CalendarProps> = ({
             rowHeight={rowHeight}
             svgWidth={svgWidth}
             dates={dates}
-            todayColor={todayColor}
+            // todayColor={todayColor}
             columnWidth={columnWidth}
-            rtl={rtl}
+            // rtl={rtl}
           />
         );
       }
@@ -388,9 +388,9 @@ export const Calendar: React.FC<CalendarProps> = ({
             rowHeight={rowHeight}
             svgWidth={svgWidth}
             dates={dates}
-            todayColor={todayColor}
+            // todayColor={todayColor}
             columnWidth={columnWidth}
-            rtl={rtl}
+            // rtl={rtl}
           />
         );
       }

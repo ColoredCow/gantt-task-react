@@ -1,6 +1,6 @@
 import React, { ReactChild } from "react";
 import styles from "./calendar.module.css";
-import { addToDate } from "../../helpers/date-helper";
+// import { addToDate } from "../../helpers/date-helper";
 import { Task  } from "../../types/public-types";
 
 type TopPartOfCalendarProps = {
@@ -10,13 +10,13 @@ type TopPartOfCalendarProps = {
   y2Line: number;
   xText: number;
   yText: number;
-  todayColor: string;
+  // todayColor: string;
   dates: Date[];
   svgWidth: number;
   rowHeight: number;
   tasks: Task[];
   columnWidth: number;
-  rtl: boolean;
+  // rtl: boolean;
 };
 
 export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
@@ -26,11 +26,11 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
   y2Line,
   xText,
   yText,
-  todayColor,
+  // todayColor,
   dates,
   svgWidth,
   rowHeight,
-  rtl,
+  // rtl,
   columnWidth,
   tasks
 }) => {
@@ -70,10 +70,10 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
     y += rowHeight;
   }
 
-  const now = new Date();
+  // const now = new Date();
   let tickX = 0;
   const ticks: ReactChild[] = [];
-  let today: ReactChild = <rect />;
+  // let today: ReactChild = <rect />;
   for (let i = 0; i < dates.length; i++) {
     const date = dates[i]; 
     ticks.push(
@@ -86,51 +86,51 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
         className={styles.gridTick}
       />
     );
-    if (
-      (i + 1 !== dates.length &&
-        date.getTime() < now.getTime() &&
-        dates[i + 1].getTime() >= now.getTime()) ||
-      // if current date is last
-      (i !== 0 &&
-        i + 1 === dates.length &&
-        date.getTime() < now.getTime() &&
-        addToDate(
-          date,
-          date.getTime() - dates[i - 1].getTime(),
-          "millisecond"
-        ).getTime() >= now.getTime())
-    ) {
-      today = (
-        <rect
-          x={tickX}
-          y={0}
-          width={columnWidth}
-          height={y}
-          fill={todayColor}
-        />
-      );
-    }
-    // rtl for today
-    if (
-      rtl &&
-      i + 1 !== dates.length &&
-      date.getTime() >= now.getTime() &&
-      dates[i + 1].getTime() < now.getTime()
-    ) {
-      today = (
-        <rect
-          x={tickX + columnWidth}
-          y={0}
-          width={columnWidth}
-          height={y}
-          fill={todayColor}
-        />
-      );
-    }
+    // if (
+    //   (i + 1 !== dates.length &&
+    //     date.getTime() < now.getTime() &&
+    //     dates[i + 1].getTime() >= now.getTime()) ||
+    //   // if current date is last
+    //   (i !== 0 &&
+    //     i + 1 === dates.length &&
+    //     date.getTime() < now.getTime() &&
+    //     addToDate(
+    //       date,
+    //       date.getTime() - dates[i - 1].getTime(),
+    //       "millisecond"
+    //     ).getTime() >= now.getTime())
+    // ) {
+    //   today = (
+    //     <rect
+    //       x={tickX}
+    //       y={0}
+    //       width={columnWidth}
+    //       height={y}
+    //       fill={todayColor}
+    //     />
+    //   );
+    // }
+    // // rtl for today
+    // if (
+    //   rtl &&
+    //   i + 1 !== dates.length &&
+    //   date.getTime() >= now.getTime() &&
+    //   dates[i + 1].getTime() < now.getTime()
+    // ) {
+    //   today = (
+    //     <rect
+    //       x={tickX + columnWidth}
+    //       y={0}
+    //       width={columnWidth}
+    //       height={y}
+    //       fill={todayColor}
+    //     />
+    //   );
+    // }
     tickX += columnWidth;
   }
   return (
-    <>
+    <g className="gridBody">
       <g className="ticks">{ticks}</g>
       <g className="calendarTop">
         <line
@@ -150,6 +150,6 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
           {value}
         </text>
       </g>
-    </>
+    </g>
   );
 };
