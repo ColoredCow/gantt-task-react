@@ -29,3 +29,7 @@
   stroke: #e0e0e0;
   stroke-width: 1.4;
 }
+
+.gridTick {
+  stroke: #e6e4e4;
+}

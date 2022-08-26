@@ -75,14 +75,14 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
   const ticks: ReactChild[] = [];
   // let today: ReactChild = <rect />;
   for (let i = 0; i < dates.length; i++) {
-    const date = dates[i]; 
+    const date = dates[i];
     ticks.push(
       <line
         key={date.getTime()}
         x1={tickX}
-        y1={0}
+        y1={45}
         x2={tickX}
-        y2={y}
+        y2={90}
         className={styles.gridTick}
       />
     );
