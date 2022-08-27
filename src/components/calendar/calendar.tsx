@@ -1,5 +1,5 @@
 import React, { ReactChild } from "react";
-import { ViewMode } from "../../types/public-types";
+import { ViewMode, Task  } from "../../types/public-types";
 import { TopPartOfCalendar } from "./top-part-of-calendar";
 import {
   getCachedDateTimeFormat,
@@ -20,6 +20,11 @@ export type CalendarProps = {
   columnWidth: number;
   fontFamily: string;
   fontSize: string;
+  todayColor: string;
+  dates: Date[];
+  svgWidth: number;
+  rowHeight: number;
+  tasks: Task[];
 };
 
 export const Calendar: React.FC<CalendarProps> = ({
@@ -31,6 +36,10 @@ export const Calendar: React.FC<CalendarProps> = ({
   columnWidth,
   fontFamily,
   fontSize,
+  dates,
+  rowHeight,
+  svgWidth,
+  tasks
 }) => {
   const getCalendarValuesForYear = () => {
     const topValues: ReactChild[] = [];
@@ -69,6 +78,11 @@ export const Calendar: React.FC<CalendarProps> = ({
             y2Line={headerHeight}
             xText={xText}
             yText={topDefaultHeight * 0.9}
+            tasks={tasks}
+            rowHeight={rowHeight}
+            svgWidth={svgWidth}
+            dates={dates}
+            columnWidth={columnWidth}
           />
         );
       }
@@ -113,6 +127,11 @@ export const Calendar: React.FC<CalendarProps> = ({
             y2Line={topDefaultHeight}
             xText={xText}
             yText={topDefaultHeight * 0.9}
+            tasks={tasks}
+            rowHeight={rowHeight}
+            svgWidth={svgWidth}
+            dates={dates}
+            columnWidth={columnWidth}
           />
         );
       }
@@ -159,6 +178,11 @@ export const Calendar: React.FC<CalendarProps> = ({
               y2Line={topDefaultHeight}
               xText={columnWidth * i + columnWidth * weeksCount * 0.5}
               yText={topDefaultHeight * 0.9}
+              tasks={tasks}
+              rowHeight={rowHeight}
+              svgWidth={svgWidth}
+              dates={dates}
+              columnWidth={columnWidth}
             />
           );
         }
@@ -210,6 +234,11 @@ export const Calendar: React.FC<CalendarProps> = ({
                 0.5
             }
             yText={topDefaultHeight * 0.9}
+            tasks={tasks}
+            rowHeight={rowHeight}
+            svgWidth={svgWidth}
+            dates={dates}
+            columnWidth={columnWidth}
           />
         );
       }
@@ -255,6 +284,11 @@ export const Calendar: React.FC<CalendarProps> = ({
             y2Line={topDefaultHeight}
             xText={columnWidth * i + ticks * columnWidth * 0.5}
             yText={topDefaultHeight * 0.9}
+            tasks={tasks}
+            rowHeight={rowHeight}
+            svgWidth={svgWidth}
+            dates={dates}
+            columnWidth={columnWidth}
           />
         );
       }
@@ -302,6 +336,11 @@ export const Calendar: React.FC<CalendarProps> = ({
             y2Line={topDefaultHeight}
             xText={columnWidth * (i + topPosition)}
             yText={topDefaultHeight * 0.9}
+            tasks={tasks}
+            rowHeight={rowHeight}
+            svgWidth={svgWidth}
+            dates={dates}
+            columnWidth={columnWidth}
           />
         );
       }
@@ -316,7 +355,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     case ViewMode.Year:
       [topValues, bottomValues] = getCalendarValuesForYear();
       break;
-    case ViewMode.Month:
+      case ViewMode.Month:
         [topValues, bottomValues] = getCalendarValuesForMonth();
         break;
       case ViewMode.Week:

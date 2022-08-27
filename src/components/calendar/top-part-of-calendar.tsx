@@ -1,5 +1,6 @@
-import React from "react";
+import React, { ReactChild } from "react";
 import styles from "./calendar.module.css";
+import { Task  } from "../../types/public-types";
 
 type TopPartOfCalendarProps = {
   value: string;
@@ -8,6 +9,11 @@ type TopPartOfCalendarProps = {
   y2Line: number;
   xText: number;
   yText: number;
+  dates: Date[];
+  svgWidth: number;
+  rowHeight: number;
+  tasks: Task[];
+  columnWidth: number;
 };
 
 export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
@@ -17,33 +23,85 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
   y2Line,
   xText,
   yText,
+  dates,
+  svgWidth,
+  rowHeight,
+  columnWidth,
+  tasks
 }) => {
+  let y = 0;
+  const gridRows: ReactChild[] = [];
+  const rowLines: ReactChild[] = [
+    <line
+      key="RowLineFirst"
+      x="0"
+      y1={0}
+      x2={svgWidth}
+      y2={0}
+      className={styles.gridRowLine}
+    />,
+  ];
+  for (const task of tasks) {
+    gridRows.push(
+      <rect
+        key={"Row" + task.id}
+        x="0"
+        y={y}
+        width={svgWidth}
+        height={rowHeight}
+        className={styles.gridRow}
+      />
+    );
+    rowLines.push(
+      <line
+        key={"RowLine" + task.id}
+        x="0"
+        y1={y + rowHeight}
+        x2={svgWidth}
+        y2={y + rowHeight}
+        className={styles.gridRowLine}
+      />
+    );
+    y += rowHeight;
+  }
+
+  let tickX = 0;
+  const ticks: ReactChild[] = [];
+  for (let i = 0; i < dates.length; i++) {
+    const date = dates[i];
+    ticks.push(
+      <line
+        key={date.getTime()}
+        x1={tickX}
+        y1={45}
+        x2={tickX}
+        y2={90}
+        className={styles.gridTick}
+      />
+    );
+    tickX += columnWidth;
+  }
   return (
-    <g className="calendarTop">
-      <line
-        x1={x1Line}
-        y1={y1Line}
-        x2={x1Line}
-        y2={y2Line}
-        className={styles.calendarTopTick}
-        key={value + "line"}
-      />
-      <text
-        key={value + "text"}
-        y={yText}
-        x={xText}
-        className={styles.calendarTopText}
-      >
-        {value}
-      </text>
-      <line
-        x1={x1Line}
-        y1={y2Line}
-        x2={x1Line + 12*30}
-        y2={y2Line}
-        className={styles.calendarTopTick}
-        key={value + "line"}
-      />
+    <g className="gridBody">
+      <g className="ticks">{ticks}</g>
+      <g className="calendarTop">
+        <line
+          x1={x1Line}
+          y1={y1Line}
+          x2={x1Line}
+          y2={y2Line}
+          className={styles.calendarTopTick}
+          key={value + "line"}
+        />
+        <text
+          key={value + "text"}
+          y={yText}
+          x={xText}
+          className={styles.calendarTopText}
+        >
+          {value}
+        </text>
+      </g>
     </g>
   );
 };
