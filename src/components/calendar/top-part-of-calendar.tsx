@@ -67,7 +67,6 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
 
   let tickX = 0;
   const ticks: ReactChild[] = [];
-  // let today: ReactChild = <rect />;
   for (let i = 0; i < dates.length; i++) {
     const date = dates[i];
     ticks.push(
