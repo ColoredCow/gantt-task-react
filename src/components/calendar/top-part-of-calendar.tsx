@@ -81,6 +81,8 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
     );
     tickX += columnWidth;
   }
+
+  // if ()
   return (
     <g className="gridBody">
       <g className="ticks">{ticks}</g>
