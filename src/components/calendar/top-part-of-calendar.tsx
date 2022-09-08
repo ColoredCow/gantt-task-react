@@ -91,7 +91,7 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
           x1={x1Line}
           y1={y1Line}
           x2={x1Line}
-          y2={y2Line}
+          y2={44.5}
           className={styles.calendarTopTick}
           key={value + "line"}
         />
