@@ -73,14 +73,15 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
       <line
         key={date.getTime()}
         x1={tickX}
-        y1={45}
+        y1={46}
         x2={tickX}
-        y2={90}
+        y2={91}
         className={styles.gridTick}
       />
     );
     tickX += columnWidth;
   }
+
   return (
     <g className="gridBody">
       <g className="ticks">{ticks}</g>
