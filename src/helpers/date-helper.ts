@@ -174,8 +174,19 @@ export const seedDates = (
   // we add the remaining months to the dates array
   if (viewMode === ViewMode.Month && dates.length < 36) {
     let monthsToAdd = 36 - dates.length;
-    for(let count=0; count<monthsToAdd; count++) {
+    for(let count=0; count < monthsToAdd; count++) {
       currentDate = addToDate(currentDate, 1, "month");
+      dates.push(currentDate);
+    }
+  }
+
+  // for years view, we need minimum of 5 columns in the chart
+  // hence, if the calculated dates array is less than 5
+  // we add the remaining years to the dates array
+  if (viewMode === ViewMode.Year && dates.length < 5) {
+    let monthsToAdd = 5 - dates.length;
+    for(let count=0; count < monthsToAdd; count++) {
+      currentDate = addToDate(currentDate, 1, "year");
       dates.push(currentDate);
     }
   }
