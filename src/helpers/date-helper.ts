@@ -42,6 +42,23 @@ export const addToDate = (
   return newDate;
 };
 
+export const subtractToDate = (
+  date: Date,
+  quantity: number,
+  scale: DateHelperScales
+) => {
+  const newDate = new Date(
+    date.getFullYear() - (scale === "year" ? quantity : 0),
+    date.getMonth() -  (scale === "month" ? quantity : 0),
+    date.getDate() - (scale === "day" ? quantity : 0),
+    date.getHours() - (scale === "hour" ? quantity : 0),
+    date.getMinutes() - (scale === "minute" ? quantity : 0),
+    date.getSeconds() - (scale === "second" ? quantity : 0),
+    date.getMilliseconds() - (scale === "millisecond" ? quantity : 0)
+  );
+  return newDate;
+};
+
 export const startOfDate = (date: Date, scale: DateHelperScales) => {
   const scores = [
     "millisecond",
@@ -167,6 +184,17 @@ export const seedDates = (
         break;
     }
     dates.push(currentDate);
+  }
+
+
+  if (viewMode === ViewMode.Month) {
+    currentDate = subtractToDate(currentDate, dates.length - 1, "month")
+    const monthsToPrepend = dates[0].getMonth();
+    for (let count = 0; count < monthsToPrepend; count++) {
+      currentDate = subtractToDate(currentDate, 1, "month");
+      dates.unshift(currentDate);
+    }
+    currentDate = dates[dates.length - 1]
   }
 
   // for months view, we need minimum of 36 columns in the chart
