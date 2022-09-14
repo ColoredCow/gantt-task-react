@@ -25,7 +25,6 @@ export const GridBody: React.FC<GridBodyProps> = ({
   viewMode
 }) => {
   let y = 0;
-  console.log(viewMode,"ayushChecking...");
   const gridRows: ReactChild[] = [];
   const rowLines: ReactChild[] = [
     <line
@@ -67,16 +66,29 @@ export const GridBody: React.FC<GridBodyProps> = ({
   let today: ReactChild = <rect />;
   for (let i = 0; i < dates.length; i++) {
     const date = dates[i];
-    ticks.push(
-      <line
-        key={date.getTime()}
-        x1={tickX}
-        y1={0}
-        x2={tickX}
-        y2={y}
-        className={viewMode === "Year" ? "calendarGridTicks" : styles.gridTick}
-      />
-    );
+    if(i > 0 && viewMode === "Month" && date.getMonth() === 0) {
+      ticks.push(
+        <line
+          key={date.getTime()}
+          x1={tickX}
+          y1={0}
+          x2={tickX}
+          y2={y}
+          className={styles.lastMonthgridTick}
+        />
+      );
+    } else {
+      ticks.push(
+        <line
+          key={date.getTime()}
+          x1={tickX}
+          y1={0}
+          x2={tickX}
+          y2={y}
+          className={viewMode === "Year" ? "calendarGridTicks" : styles.gridTick}
+        />
+      );
+    }
     if (
       (i + 1 !== dates.length &&
         date.getTime() < now.getTime() &&
