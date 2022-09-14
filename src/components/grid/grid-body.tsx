@@ -2,6 +2,7 @@ import React, { ReactChild } from "react";
 import { Task } from "../../types/public-types";
 import { addToDate } from "../../helpers/date-helper";
 import styles from "./grid.module.css";
+import { ViewMode  } from "../../types/public-types";
 
 export type GridBodyProps = {
   tasks: Task[];
@@ -11,6 +12,7 @@ export type GridBodyProps = {
   columnWidth: number;
   todayColor: string;
   rtl: boolean;
+  viewMode: ViewMode;
 };
 export const GridBody: React.FC<GridBodyProps> = ({
   tasks,
@@ -20,8 +22,10 @@ export const GridBody: React.FC<GridBodyProps> = ({
   columnWidth,
   todayColor,
   rtl,
+  viewMode
 }) => {
   let y = 0;
+  console.log(viewMode,"ayushChecking...");
   const gridRows: ReactChild[] = [];
   const rowLines: ReactChild[] = [
     <line
@@ -70,7 +74,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
         y1={0}
         x2={tickX}
         y2={y}
-        className={styles.gridTick}
+        className={viewMode === "Year" ? "calendarGridTicks" : styles.gridTick}
       />
     );
     if (

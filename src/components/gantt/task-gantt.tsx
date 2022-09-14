@@ -3,12 +3,14 @@ import { GridProps, Grid } from "../grid/grid";
 import { CalendarProps, Calendar } from "../calendar/calendar";
 import { TaskGanttContentProps, TaskGanttContent } from "./task-gantt-content";
 import styles from "./gantt.module.css";
+import { ViewMode  } from "../../types/public-types";
 
 export type TaskGanttProps = {
   gridProps: GridProps;
   calendarProps: CalendarProps;
   barProps: TaskGanttContentProps;
   ganttHeight: number;
+  viewMode: ViewMode;
   scrollY: number;
   scrollX: number;
 };
@@ -19,7 +21,9 @@ export const TaskGantt: React.FC<TaskGanttProps> = ({
   ganttHeight,
   scrollY,
   scrollX,
+  viewMode
 }) => {
+  {console.log(viewMode, "TaskGantt....")}
   const ganttSVGRef = useRef<SVGSVGElement>(null);
   const horizontalContainerRef = useRef<HTMLDivElement>(null);
   const verticalGanttContainerRef = useRef<HTMLDivElement>(null);
