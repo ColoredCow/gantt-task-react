@@ -42,7 +42,6 @@ export const Calendar: React.FC<CalendarProps> = ({
   tasks
 }) => {
   const getCalendarValuesForYear = () => {
-    console.log(viewMode === "Year" ? "CalendarDates" : styles.calendarBottomText, "viewMode.....")
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
     const topDefaultHeight = headerHeight * 0.5;
