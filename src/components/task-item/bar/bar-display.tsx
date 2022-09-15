@@ -49,7 +49,7 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
         ry={barCornerRadius}
         rx={barCornerRadius}
         fill={getBarColor()}
-        className={style.barBackground}
+        className="barBackgroundAnimation"
       />
       <rect
         x={progressX}
@@ -59,6 +59,7 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
         ry={barCornerRadius}
         rx={barCornerRadius}
         fill={getProcessColor()}
+        className="barBackgroundAnimation"
       />
     </g>
   );
