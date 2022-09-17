@@ -109,7 +109,7 @@ export const ganttDateRange = (
       newEndDate = startOfDate(newEndDate, "year");
       break;
     case ViewMode.Month:
-      newStartDate = addToDate(newStartDate, -1 * preStepsCount, "month");
+      newStartDate = addToDate(newStartDate, 1, "month");
       newStartDate = startOfDate(newStartDate, "month");
       newEndDate = addToDate(newEndDate, 1, "year");
       newEndDate = startOfDate(newEndDate, "year");
@@ -187,7 +187,7 @@ export const seedDates = (
   }
 
 
-  if (viewMode === ViewMode.Month && dates[0].getMonth() !== 0) {
+  if (viewMode === ViewMode.Month) {
     currentDate = subtractToDate(currentDate, dates.length - 1, "month")
     const monthsToPrepend = dates[0].getMonth();
     for (let count = 0; count < monthsToPrepend; count++) {
