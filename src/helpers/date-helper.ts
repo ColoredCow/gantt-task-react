@@ -187,16 +187,14 @@ export const seedDates = (
   }
 
 
-  if (viewMode === ViewMode.Month) {
+  if (viewMode === ViewMode.Month && dates[0].getMonth() !== 0) {
     currentDate = subtractToDate(currentDate, dates.length - 1, "month")
     const monthsToPrepend = dates[0].getMonth();
-    if(dates[0].getMonth() !== 0){
-      for (let count = 0; count < monthsToPrepend; count++) {
-        currentDate = subtractToDate(currentDate, 1, "month");
-        dates.unshift(currentDate);
-      }
-      currentDate = dates[dates.length - 1]
+    for (let count = 0; count < monthsToPrepend; count++) {
+      currentDate = subtractToDate(currentDate, 1, "month");
+      dates.unshift(currentDate);
     }
+    currentDate = dates[dates.length - 1]
   }
 
   // for months view, we need minimum of 36 columns in the chart
