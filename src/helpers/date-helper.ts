@@ -109,7 +109,7 @@ export const ganttDateRange = (
       newEndDate = startOfDate(newEndDate, "year");
       break;
     case ViewMode.Month:
-      newStartDate = addToDate(newStartDate, 1, "month");
+      newStartDate = addToDate(newStartDate, -1, "month");
       newStartDate = startOfDate(newStartDate, "month");
       newEndDate = addToDate(newEndDate, 1, "year");
       newEndDate = startOfDate(newEndDate, "year");
@@ -200,12 +200,15 @@ export const seedDates = (
   // for months view, we need minimum of 36 columns in the chart
   // hence, if the calculated dates array is less than 36
   // we add the remaining months to the dates array
+  console.log(dates.length, "dates.length....");
   if (viewMode === ViewMode.Month && dates.length < 36) {
     let monthsToAdd = 36 - dates.length;
+    console.log(monthsToAdd, "monthsToAdd")
     for(let count=0; count < monthsToAdd; count++) {
       currentDate = addToDate(currentDate, 1, "month");
       dates.push(currentDate);
     }
+  console.log(dates.length, "dates.length.....dates.length....");
   }
 
   // for years view, we need minimum of 5 columns in the chart

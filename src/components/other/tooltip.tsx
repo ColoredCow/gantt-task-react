@@ -46,7 +46,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       const tooltipHeight = tooltipRef.current.offsetHeight * 1.1;
       const tooltipWidth = tooltipRef.current.offsetWidth * 1.1;
 
-      let newRelatedY = task.index * rowHeight + headerHeight;
+      let newRelatedY = task.index * rowHeight - scrollY + headerHeight;
       let newRelatedX: number;
       if (rtl) {
         newRelatedX = task.x1 - arrowIndent * 1.5 - tooltipWidth - scrollX;
@@ -77,8 +77,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
         }
       }
 
-      const tooltipLowerPoint = tooltipHeight + newRelatedY;
-      if (tooltipLowerPoint > svgContainerHeight) {
+      const tooltipLowerPoint = tooltipHeight + newRelatedY - scrollY;
+      if (tooltipLowerPoint > svgContainerHeight - scrollY) {
         newRelatedY = svgContainerHeight - tooltipHeight;
       }
       setRelatedY(newRelatedY);
