@@ -101,14 +101,14 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
     <g className="gridBody">
       <g className="ticks">{ticks}</g>
       <g className="calendarTop">
-        {x1Line === 360 && <line
+        <line
           x1={x1Line}
           y1={y1Line}
           x2={x1Line}
           y2={45.5}
           className={styles.calendarTopTick}
           key={value + "line"}
-        />}
+        />
         <text
           key={value + "text"}
           y={yText}
