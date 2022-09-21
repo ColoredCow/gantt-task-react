@@ -208,11 +208,11 @@ export const seedDates = (
     }
   }
 
-  // for years view, we need minimum of 5 columns in the chart
-  // hence, if the calculated dates array is less than 5
+  // for years view, we need minimum of 8 columns in the chart
+  // hence, if the calculated dates array is less than 8
   // we add the remaining years to the dates array
-  if (viewMode === ViewMode.Year && dates.length < 5) {
-    let monthsToAdd = 5 - dates.length;
+  if (viewMode === ViewMode.Year && dates.length < 8) {
+    let monthsToAdd = 8 - dates.length;
     for(let count=0; count < monthsToAdd; count++) {
       currentDate = addToDate(currentDate, 1, "year");
       dates.push(currentDate);
