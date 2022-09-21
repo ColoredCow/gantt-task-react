@@ -200,7 +200,6 @@ export const seedDates = (
   // for months view, we need minimum of 36 columns in the chart
   // hence, if the calculated dates array is less than 36
   // we add the remaining months to the dates array
-  console.log(dates.length, "dates.length....");
   if (viewMode === ViewMode.Month && dates.length < 36) {
     let monthsToAdd = 36 - dates.length;
     console.log(monthsToAdd, "monthsToAdd")
