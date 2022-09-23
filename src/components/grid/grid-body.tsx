@@ -47,16 +47,19 @@ export const GridBody: React.FC<GridBodyProps> = ({
         className={styles.gridRow}
       />
     );
-    rowLines.push(
-      <line
-        key={"RowLine" + task.id}
-        x="0"
-        y1={y + rowHeight}
-        x2={svgWidth}
-        y2={y + rowHeight}
-        className={styles.gridRowLine}
-      />
-    );
+    console.log(rowLines, "task...")
+    if(y !== 430) {
+      rowLines.push(
+        <line
+          key={"RowLine" + task.id}
+          x="0"
+          y1={y + rowHeight}
+          x2={svgWidth}
+          y2={y + rowHeight}
+          className={styles.gridRowLine}
+        />
+      );
+    }
     y += rowHeight;
   }
 
