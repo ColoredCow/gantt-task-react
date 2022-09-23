@@ -48,7 +48,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       />
     );
     console.log(rowLines, "task...")
-    if(y !== 430) {
+    if(y + rowHeight !== 430) {
       rowLines.push(
         <line
           key={"RowLine" + task.id}
