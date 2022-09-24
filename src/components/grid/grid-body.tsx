@@ -55,7 +55,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
           y1={y + rowHeight}
           x2={svgWidth}
           y2={y + rowHeight}
-          className={y + rowHeight !== 0 ? styles.gridRowLine : "calendarLine"}
+          className={styles.gridRowLine}
         />
       );
     }
