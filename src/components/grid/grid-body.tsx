@@ -47,7 +47,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
         className={styles.gridRow}
       />
     );
-    console.log(rowLines, "task...")
+    let calendarLine = (y + rowHeight) == 0;
     if(y + rowHeight !== 430) {
       rowLines.push(
         <line
@@ -56,7 +56,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
           y1={y + rowHeight}
           x2={svgWidth}
           y2={y + rowHeight}
-          className={y + rowHeight === 0 ? "calendarLine" : styles.gridRowLine}
+          className={calendarLine ? "calendarLine" : styles.gridRowLine}
         />
       );
     }
