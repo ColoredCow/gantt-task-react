@@ -33,7 +33,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       y1={0}
       x2={svgWidth}
       y2={0}
-      className={y + rowHeight === 0 ? "CalendarLine" : styles.gridRowLine}
+      className={y + rowHeight === 0 ? "calendarLine" : styles.gridRowLine}
     />,
   ];
   for (const task of tasks) {
@@ -56,7 +56,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
           y1={y + rowHeight}
           x2={svgWidth}
           y2={y + rowHeight}
-          className={y + rowHeight === 0 ? "CalendarLine" : styles.gridRowLine}
+          className={y + rowHeight === 0 ? "calendarLine" : styles.gridRowLine}
         />
       );
     }
