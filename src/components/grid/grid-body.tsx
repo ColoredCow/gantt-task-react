@@ -30,9 +30,9 @@ export const GridBody: React.FC<GridBodyProps> = ({
     <line
       key="RowLineFirst"
       x="0"
-      y1={0}
+      y1={1}
       x2={svgWidth}
-      y2={0}
+      y2={1}
       className={styles.gridRowLine}
     />,
   ];
