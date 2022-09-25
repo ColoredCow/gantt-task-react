@@ -24,7 +24,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
   rtl,
   viewMode
 }) => {
-  let y = 0;
+  let y = 1;
   const gridRows: ReactChild[] = [];
   const rowLines: ReactChild[] = [
     <line
@@ -33,7 +33,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       y1={y}
       x2={svgWidth}
       y2={y}
-      className={styles.gridRowLineFirst}
+      className={styles.gridRowLine}
     />,
   ];
   for (const task of tasks) {

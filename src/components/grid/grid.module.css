@@ -9,10 +9,6 @@
 .gridRowLine {
   stroke: #ebeff2;
 }
-.gridRowLineFirst {
-  stroke: #174595;
-  stroke-width: 2;
-}
 
 .gridTick {
   stroke: #e6e4e4;
