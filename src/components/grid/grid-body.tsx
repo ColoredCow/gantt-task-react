@@ -95,6 +95,10 @@ export const GridBody: React.FC<GridBodyProps> = ({
         />
       );
     }
+    let todayY = 0;
+    if (viewMode === "Month") {
+      todayY = 1;
+    }
     if (
       (i + 1 !== dates.length &&
         date.getTime() < now.getTime() &&
@@ -112,7 +116,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       today = (
         <rect
           x={tickX}
-          y={1}
+          y={todayY}
           width={columnWidth}
           height={y}
           fill={todayColor}
@@ -129,7 +133,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       today = (
         <rect
           x={tickX + columnWidth}
-          y={1}
+          y={todayY}
           width={columnWidth}
           height={y}
           fill={todayColor}
