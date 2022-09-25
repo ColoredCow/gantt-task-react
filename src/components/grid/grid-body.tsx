@@ -24,15 +24,15 @@ export const GridBody: React.FC<GridBodyProps> = ({
   rtl,
   viewMode
 }) => {
-  let y = 0;
+  let y = 1;
   const gridRows: ReactChild[] = [];
   const rowLines: ReactChild[] = [
     <line
       key="RowLineFirst"
       x="0"
-      y1={1}
+      y1={y}
       x2={svgWidth}
-      y2={1}
+      y2={y}
       className={styles.gridRowLine}
     />,
   ];
