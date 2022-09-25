@@ -24,7 +24,11 @@ export const GridBody: React.FC<GridBodyProps> = ({
   rtl,
   viewMode
 }) => {
-  let y = 1;
+  let y = 0;
+  if (viewMode === "Month") {
+    y = 1;
+  }
+
   const gridRows: ReactChild[] = [];
   const rowLines: ReactChild[] = [
     <line
