@@ -38,7 +38,7 @@ export const Project: React.FC<TaskItemProps> = ({ task, isSelected }) => {
         height={task.height}
         rx={task.barCornerRadius}
         ry={task.barCornerRadius}
-        className={styles.projectBackground}
+        className="barAnimation"
       />
       <rect
         x={task.progressX}
@@ -48,6 +48,7 @@ export const Project: React.FC<TaskItemProps> = ({ task, isSelected }) => {
         ry={task.barCornerRadius}
         rx={task.barCornerRadius}
         fill={processColor}
+        className="barAnimation"
       />
       <rect
         fill={barColor}

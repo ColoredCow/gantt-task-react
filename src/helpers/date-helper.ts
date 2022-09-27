@@ -42,6 +42,23 @@ export const addToDate = (
   return newDate;
 };
 
+export const subtractToDate = (
+  date: Date,
+  quantity: number,
+  scale: DateHelperScales
+) => {
+  const newDate = new Date(
+    date.getFullYear() - (scale === "year" ? quantity : 0),
+    date.getMonth() -  (scale === "month" ? quantity : 0),
+    date.getDate() - (scale === "day" ? quantity : 0),
+    date.getHours() - (scale === "hour" ? quantity : 0),
+    date.getMinutes() - (scale === "minute" ? quantity : 0),
+    date.getSeconds() - (scale === "second" ? quantity : 0),
+    date.getMilliseconds() - (scale === "millisecond" ? quantity : 0)
+  );
+  return newDate;
+};
+
 export const startOfDate = (date: Date, scale: DateHelperScales) => {
   const scores = [
     "millisecond",
@@ -92,7 +109,7 @@ export const ganttDateRange = (
       newEndDate = startOfDate(newEndDate, "year");
       break;
     case ViewMode.Month:
-      newStartDate = addToDate(newStartDate, -1 * preStepsCount, "month");
+      newStartDate = addToDate(newStartDate, -1, "month");
       newStartDate = startOfDate(newStartDate, "month");
       newEndDate = addToDate(newEndDate, 1, "year");
       newEndDate = startOfDate(newEndDate, "year");
@@ -169,13 +186,35 @@ export const seedDates = (
     dates.push(currentDate);
   }
 
+
+  if (viewMode === ViewMode.Month) {
+    currentDate = subtractToDate(currentDate, dates.length - 1, "month")
+    const monthsToPrepend = dates[0].getMonth();
+    for (let count = 0; count < monthsToPrepend; count++) {
+      currentDate = subtractToDate(currentDate, 1, "month");
+      dates.unshift(currentDate);
+    }
+    currentDate = dates[dates.length - 1]
+  }
+
   // for months view, we need minimum of 36 columns in the chart
   // hence, if the calculated dates array is less than 36
   // we add the remaining months to the dates array
   if (viewMode === ViewMode.Month && dates.length < 36) {
     let monthsToAdd = 36 - dates.length;
-    for(let count=0; count<monthsToAdd; count++) {
+    for(let count=0; count < monthsToAdd; count++) {
       currentDate = addToDate(currentDate, 1, "month");
+      dates.push(currentDate);
+    }
+  }
+
+  // for years view, we need minimum of 8 columns in the chart
+  // hence, if the calculated dates array is less than 8
+  // we add the remaining years to the dates array
+  if (viewMode === ViewMode.Year && dates.length < 8) {
+    let monthsToAdd = 8 - dates.length;
+    for(let count=0; count < monthsToAdd; count++) {
+      currentDate = addToDate(currentDate, 1, "year");
       dates.push(currentDate);
     }
   }

@@ -3,12 +3,14 @@ import { GridProps, Grid } from "../grid/grid";
 import { CalendarProps, Calendar } from "../calendar/calendar";
 import { TaskGanttContentProps, TaskGanttContent } from "./task-gantt-content";
 import styles from "./gantt.module.css";
+import { ViewMode  } from "../../types/public-types";
 
 export type TaskGanttProps = {
   gridProps: GridProps;
   calendarProps: CalendarProps;
   barProps: TaskGanttContentProps;
   ganttHeight: number;
+  viewMode: ViewMode;
   scrollY: number;
   scrollX: number;
 };

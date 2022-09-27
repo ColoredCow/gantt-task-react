@@ -2,6 +2,7 @@ import React, { ReactChild } from "react";
 import { Task } from "../../types/public-types";
 import { addToDate } from "../../helpers/date-helper";
 import styles from "./grid.module.css";
+import { ViewMode  } from "../../types/public-types";
 
 export type GridBodyProps = {
   tasks: Task[];
@@ -11,6 +12,7 @@ export type GridBodyProps = {
   columnWidth: number;
   todayColor: string;
   rtl: boolean;
+  viewMode: ViewMode;
 };
 export const GridBody: React.FC<GridBodyProps> = ({
   tasks,
@@ -20,16 +22,21 @@ export const GridBody: React.FC<GridBodyProps> = ({
   columnWidth,
   todayColor,
   rtl,
+  viewMode
 }) => {
   let y = 0;
+  if (viewMode === "Month") {
+    y = 1;
+  }
+
   const gridRows: ReactChild[] = [];
   const rowLines: ReactChild[] = [
     <line
       key="RowLineFirst"
       x="0"
-      y1={0}
+      y1={y}
       x2={svgWidth}
-      y2={0}
+      y2={y}
       className={styles.gridRowLine}
     />,
   ];
@@ -44,16 +51,18 @@ export const GridBody: React.FC<GridBodyProps> = ({
         className={styles.gridRow}
       />
     );
-    rowLines.push(
-      <line
-        key={"RowLine" + task.id}
-        x="0"
-        y1={y + rowHeight}
-        x2={svgWidth}
-        y2={y + rowHeight}
-        className={styles.gridRowLine}
-      />
-    );
+    if(y + rowHeight !== 430) {
+      rowLines.push(
+        <line
+          key={"RowLine" + task.id}
+          x="0"
+          y1={y + rowHeight}
+          x2={svgWidth}
+          y2={y + rowHeight}
+          className={styles.gridRowLine}
+        />
+      );
+    }
     y += rowHeight;
   }
 
@@ -63,16 +72,33 @@ export const GridBody: React.FC<GridBodyProps> = ({
   let today: ReactChild = <rect />;
   for (let i = 0; i < dates.length; i++) {
     const date = dates[i];
-    ticks.push(
-      <line
-        key={date.getTime()}
-        x1={tickX}
-        y1={0}
-        x2={tickX}
-        y2={y}
-        className={styles.gridTick}
-      />
-    );
+    if(i > 0 && viewMode === "Month" && date.getMonth() === 0) {
+      ticks.push(
+        <line
+          key={date.getTime()}
+          x1={tickX}
+          y1={0}
+          x2={tickX}
+          y2={y}
+          className={styles.lastMonthgridTick}
+        />
+      );
+    } else {
+      ticks.push(
+        <line
+          key={date.getTime()}
+          x1={tickX}
+          y1={0}
+          x2={tickX}
+          y2={y}
+          className={viewMode === "Year" ? "calendarGridTicks" : styles.gridTick}
+        />
+      );
+    }
+    let todayY = 0;
+    if (viewMode === "Month") {
+      todayY = 1;
+    }
     if (
       (i + 1 !== dates.length &&
         date.getTime() < now.getTime() &&
@@ -90,7 +116,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       today = (
         <rect
           x={tickX}
-          y={0}
+          y={todayY}
           width={columnWidth}
           height={y}
           fill={todayColor}
@@ -107,7 +133,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       today = (
         <rect
           x={tickX + columnWidth}
-          y={0}
+          y={todayY}
           width={columnWidth}
           height={y}
           fill={todayColor}
@@ -119,8 +145,8 @@ export const GridBody: React.FC<GridBodyProps> = ({
   return (
     <g className="gridBody">
       <g className="rows">{gridRows}</g>
-      <g className="rowLines">{rowLines}</g>
       <g className="ticks">{ticks}</g>
+      <g className="rowLines">{rowLines}</g>
       <g className="today">{today}</g>
     </g>
   );

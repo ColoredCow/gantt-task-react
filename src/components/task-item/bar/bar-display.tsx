@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./bar.module.css";
+// import style from "./bar.module.css";
 
 type BarDisplayProps = {
   x: number;
@@ -24,7 +24,7 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
   y,
   width,
   height,
-  isSelected,
+  // isSelected,
   progressX,
   progressWidth,
   barCornerRadius,
@@ -32,11 +32,11 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
   onMouseDown,
 }) => {
   const getProcessColor = () => {
-    return isSelected ? styles.progressSelectedColor : styles.progressColor;
+    return styles.progressColor;
   };
 
   const getBarColor = () => {
-    return isSelected ? styles.backgroundSelectedColor : styles.backgroundColor;
+    return styles.backgroundColor;
   };
 
   return (
@@ -49,7 +49,7 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
         ry={barCornerRadius}
         rx={barCornerRadius}
         fill={getBarColor()}
-        className={style.barBackground}
+        className="barBackgroundAnimation"
       />
       <rect
         x={progressX}
@@ -59,6 +59,7 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
         ry={barCornerRadius}
         rx={barCornerRadius}
         fill={getProcessColor()}
+        className="barBackgroundAnimation"
       />
     </g>
   );

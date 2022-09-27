@@ -33,3 +33,7 @@
 .gridTick {
   stroke: #e6e4e4;
 }
+
+.lastMonthgridTick{
+  stroke: #174595;
+}

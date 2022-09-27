@@ -395,6 +395,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     dates: dateSetup.dates,
     todayColor,
     rtl,
+    viewMode
   };
   const calendarProps: CalendarProps = {
     dateSetup,
@@ -470,6 +471,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
           ganttHeight={ganttHeight}
           scrollY={scrollY}
           scrollX={scrollX}
+          viewMode={viewMode}
         />
         {ganttEvent.changedTask && (
           <Tooltip

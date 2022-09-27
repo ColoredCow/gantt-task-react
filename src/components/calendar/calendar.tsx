@@ -53,7 +53,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           key={date.getFullYear()}
           y={headerHeight * 0.8}
           x={columnWidth * i + columnWidth * 0.5}
-          className={styles.calendarBottomText}
+          className={viewMode === "Year" ? "CalendarDates" : styles.calendarBottomText}
         >
           {bottomValue}
         </text>
@@ -83,6 +83,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             svgWidth={svgWidth}
             dates={dates}
             columnWidth={columnWidth}
+            viewMode={viewMode}
           />
         );
       }
@@ -132,6 +133,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             svgWidth={svgWidth}
             dates={dates}
             columnWidth={columnWidth}
+            viewMode={viewMode}
           />
         );
       }
@@ -183,6 +185,7 @@ export const Calendar: React.FC<CalendarProps> = ({
               svgWidth={svgWidth}
               dates={dates}
               columnWidth={columnWidth}
+              viewMode={viewMode}
             />
           );
         }
@@ -239,6 +242,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             svgWidth={svgWidth}
             dates={dates}
             columnWidth={columnWidth}
+            viewMode={viewMode}
           />
         );
       }
@@ -289,6 +293,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             svgWidth={svgWidth}
             dates={dates}
             columnWidth={columnWidth}
+            viewMode={viewMode}
           />
         );
       }
@@ -341,6 +346,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             svgWidth={svgWidth}
             dates={dates}
             columnWidth={columnWidth}
+            viewMode={viewMode}
           />
         );
       }

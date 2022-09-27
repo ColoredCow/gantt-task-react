@@ -1,6 +1,6 @@
 import React, { ReactChild } from "react";
 import styles from "./calendar.module.css";
-import { Task  } from "../../types/public-types";
+import { Task, ViewMode  } from "../../types/public-types";
 
 type TopPartOfCalendarProps = {
   value: string;
@@ -14,20 +14,22 @@ type TopPartOfCalendarProps = {
   rowHeight: number;
   tasks: Task[];
   columnWidth: number;
+  viewMode: ViewMode;
 };
 
 export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
   value,
   x1Line,
   y1Line,
-  y2Line,
+  // y2Line,
   xText,
   yText,
   dates,
   svgWidth,
   rowHeight,
   columnWidth,
-  tasks
+  tasks,
+  viewMode
 }) => {
   let y = 0;
   const gridRows: ReactChild[] = [];
@@ -69,16 +71,29 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
   const ticks: ReactChild[] = [];
   for (let i = 0; i < dates.length; i++) {
     const date = dates[i];
+    if(i > 0 && viewMode === "Month" && date.getMonth() === 0) {
     ticks.push(
-      <line
+        <line
+          key={date.getTime()}
+          x1={tickX}
+          y1={46}
+          x2={tickX}
+          y2={91}
+          className={styles.lastMonthgridTick}
+        />
+      );
+    } else {
+      ticks.push(
+        <line
         key={date.getTime()}
         x1={tickX}
         y1={46}
         x2={tickX}
         y2={91}
         className={styles.gridTick}
-      />
-    );
+        />
+        );
+      }
     tickX += columnWidth;
   }
 
@@ -90,7 +105,7 @@ export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
           x1={x1Line}
           y1={y1Line}
           x2={x1Line}
-          y2={y2Line}
+          y2={45.5}
           className={styles.calendarTopTick}
           key={value + "line"}
         />
