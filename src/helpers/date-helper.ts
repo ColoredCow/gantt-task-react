@@ -31,7 +31,7 @@ export const addToDate = (
   scale: DateHelperScales
 ) => {
   const newDate = new Date(
-    // date.getFullYear() + (scale === "year" ? quantity : 0),
+    date.getFullYear() + (scale === "year" ? quantity : 0),
     date.getMonth() + (scale === "month" ? quantity : 0),
     date.getDate() + (scale === "day" ? quantity : 0),
     date.getHours() + (scale === "hour" ? quantity : 0),
